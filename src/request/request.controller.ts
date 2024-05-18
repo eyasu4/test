@@ -24,4 +24,22 @@ export class RequestController {
       res.status(500).send('Error reading log file');
     }
   }
+
+  //logContractRequest
+  @Post('contract')
+  logContractRequest(@Body() request: any) {
+    this.loggerService.logContractRequest(request);
+    return 'Contract request logged successfully';
+  }
+
+  @Get('contract/log')
+  getLoggedContractRequests(@Res() res: Response) {
+    try {
+      const data = fs.readFileSync('contract.log', 'utf8');
+      res.set('Content-Type', 'text/plain');
+      res.send(data);
+    } catch (error) {
+      res.status(500).send('Error reading contract log file');
+    }
+  }
 }

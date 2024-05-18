@@ -8,4 +8,9 @@ export class LoggerService {
     const logData = JSON.stringify(request);
     fs.appendFileSync('request.log', logData + '\n');
   }
+
+  logContractRequest(request: any) {
+    const logData = JSON.stringify(request);
+    fs.appendFileSync('contract.log', logData + '\n');
+  }
 }
